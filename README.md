@@ -49,18 +49,19 @@ token file, touch the dynamic configuration to reload it.
 
 ## Example
 
-Static configuration (loading the plugin from a local checkout; Traefik
-expects it under `./plugins-local/src/github.com/thomaskhub/traefik-plugin-s3-bucket`):
+Static configuration, loading the plugin from the Traefik plugin catalog:
 
 ```yaml
 experimental:
-  localPlugins:
+  plugins:
     s3token:
       moduleName: github.com/thomaskhub/traefik-plugin-s3-bucket
+      version: v0.1.0
 ```
 
-If the repository is public and listed in the Traefik plugin catalog, use
-`experimental.plugins` with a `version` instead.
+To load it from a local checkout instead, put the repository under
+`./plugins-local/src/github.com/thomaskhub/traefik-plugin-s3-bucket` and use
+`experimental.localPlugins` with the same `moduleName` and no `version`.
 
 Dynamic configuration, one middleware per bucket:
 
