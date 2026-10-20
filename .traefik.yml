@@ -1,0 +1,15 @@
+displayName: S3 Token
+type: middleware
+import: github.com/thomaskhub/traefik-plugin-s3-bucket
+basePkg: s3token
+summary: Read objects from an S3-compatible bucket (S3, R2, RustFS, MinIO) with one shared token; the plugin signs each request with SigV4.
+
+testData:
+  endpoint: https://s3.example.com
+  region: us-east-1
+  bucket: sstate
+  stripPrefix: /sstate
+  accessKeyID: AKIAEXAMPLE
+  secretAccessKey: secretexample
+  tokens:
+    - change-me-to-a-long-random-token

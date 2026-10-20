@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - run: go vet ./...
+      - run: go test -race ./...
+      - name: Test under Yaegi (as Traefik runs it)
+        run: |
+          go install github.com/traefik/yaegi/cmd/yaegi@v0.16.1
+          yaegi test -v .
